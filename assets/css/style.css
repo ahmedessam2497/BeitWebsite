@@ -559,3 +559,10 @@ body:not(.page-index) .nav .nav__book:hover{background:var(--charcoal);color:var
   .pagebar::-webkit-scrollbar{display:none}
   .pagebar a{flex:none}
 }
+
+/* v3.1 — no reserved gap under the page bar: the first section draws the wave inside its own top edge */
+.pagebar{padding-bottom:16px}
+.pagebar + section > .wave--top{bottom:auto;top:-1px;transform:scaleY(-1);color:var(--cream)!important;z-index:2}
+.pagebar + section:not(.acts){padding-top:calc(var(--wave-h) + clamp(28px,3.5vw,56px))}
+.pagebar + .garden .garden__intro{padding-top:0}
+.pagebar + .rooms .rooms__head{margin-top:0}
