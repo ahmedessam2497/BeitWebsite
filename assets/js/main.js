@@ -75,7 +75,7 @@
       idx = keys.indexOf(key);
       slides.forEach(s => {
         const on = s.dataset.key === key;
-        if (on && !s.classList.contains('is-active')) { s.style.transition = 'none'; s.style.transform = 'scale(1.12)'; s.offsetWidth; s.style.transition = ''; s.style.transform = ''; }
+        if (on && !s.classList.contains('is-active')) { s.style.transition = 'none'; s.style.transform = 'scale(1.05)'; s.offsetWidth; s.style.transition = ''; s.style.transform = ''; }
         s.classList.toggle('is-active', on);
       });
       words.forEach(w => w.classList.toggle('is-active', w.dataset.key === key));
@@ -259,7 +259,7 @@
       leafL.style.transform = `rotateY(${-pOpen * 112}deg)`; leafR.style.transform = `rotateY(${pOpen * 112}deg)`;
       const ix = d.x * (1 - pGrow), it = d.y * (1 - pGrow), ib = (vh - d.y - d.H) * (1 - pGrow), rad = (d.W / 2) * (1 - pGrow);
       thRoom.style.clipPath = `inset(${it}px ${ix}px ${ib}px ${ix}px round ${rad}px ${rad}px 0 0)`;
-      thImg.style.transform = `scale(${1.35 - pGrow * .35})`;
+      thImg.style.transform = `scale(${1.12 - pGrow * .12})`;
       thRoom.style.setProperty('--dim', (pGrow * .32).toFixed(3));
       thGlow.style.opacity = (pOpen * (1 - pGrow)).toFixed(3);
       thT1.style.opacity = (1 - clamp(p / .22)).toFixed(3);
@@ -295,7 +295,7 @@
         const r = f.getBoundingClientRect();
         if (r.top > vh || r.bottom < 0) return;
         const prog = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
-        im.style.translate = `0 ${(-prog * r.height * .1).toFixed(1)}px`;
+        im.style.translate = `0 ${(-prog * r.height * .05).toFixed(1)}px`;
       });
       if (gWin) {
         const gr = gWin.getBoundingClientRect();
@@ -303,8 +303,8 @@
           const e = 1 - Math.pow(1 - clamp((vh - gr.top) / (vh * .95)), 3);
           const sx = (1 - e) * 28, sy = (1 - e) * 10, rad = (1 - e) * 600;
           gWin.style.clipPath = `inset(${sy}% ${sx}% 0% ${sx}% round ${rad}px ${rad}px 0 0)`;
-          gImg.style.translate = `0 ${((gr.top + gr.height / 2 - vh / 2) * -.12).toFixed(1)}px`;
-          gImg.style.scale = (1.15 - e * .15).toFixed(3);
+          gImg.style.translate = `0 ${((gr.top + gr.height / 2 - vh / 2) * -.04).toFixed(1)}px`;
+          gImg.style.scale = (1.06 - e * .06).toFixed(3);
         }
       }
       waves.forEach((w, i) => {
@@ -384,6 +384,10 @@
   const bgm = $('#bgm'), soundBtn = $('#sound');
   if (bgm && soundBtn) {
     const VOL = .35;
+    const fallback = () => { const fb = bgm.dataset.fallback; if (fb && !bgm.src.endsWith(fb)) { bgm.src = fb; bgm.load(); } };
+    bgm.addEventListener('error', fallback);
+    if (bgm.error) fallback();
+    const tKey = () => 'bh-music-t:' + bgm.currentSrc.split('/').pop();
     const store = { get(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } },
                     set(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} } };
     let fadeT;
@@ -397,7 +401,7 @@
     const ready = () => {
       if (!soundBtn.hidden) return;
       soundBtn.hidden = false;
-      const t = parseFloat(store.get('bh-music-t')); if (t && t < bgm.duration) bgm.currentTime = t;
+      const t = parseFloat(store.get(tKey())); if (t && t < bgm.duration) bgm.currentTime = t;
       if (store.get('bh-music') === 'on') {
         play(); // browsers may block this until the first tap; then we start on that tap
         const kick = () => { if (bgm.paused && store.get('bh-music') === 'on') play(); ['pointerdown', 'keydown', 'touchstart'].forEach(ev => removeEventListener(ev, kick, true)); };
@@ -406,7 +410,7 @@
     };
     if (bgm.readyState >= 1) ready(); else bgm.addEventListener('loadedmetadata', ready);
     soundBtn.addEventListener('click', () => { if (bgm.paused) { store.set('bh-music', 'on'); play(); } else { store.set('bh-music', 'off'); stop(); } });
-    addEventListener('pagehide', () => store.set('bh-music-t', String(bgm.currentTime || 0)));
+    addEventListener('pagehide', () => { if (bgm.currentSrc) store.set(tKey(), String(bgm.currentTime || 0)); });
     document.addEventListener('visibilitychange', () => { if (document.hidden) { if (!bgm.paused) { bgm.pause(); bgm._wasOn = true; } } else if (bgm._wasOn) { bgm._wasOn = false; play(); } });
   }
 

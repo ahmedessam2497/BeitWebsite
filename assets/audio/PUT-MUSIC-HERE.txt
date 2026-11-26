@@ -1,5 +1,14 @@
-Put your background music here, named exactly:  ambience.mp3
+Background music — one track per page. Name the files exactly:
 
-- Use a track you have the rights to (licensed or royalty-free for commercial use).
-- Keep it light: about 2-4 minutes, 128 kbps MP3 (roughly 2-4 MB). It loops.
-- The Sound button appears on every page automatically once the file is here.
+  home.mp3        -> landing page
+  house.mp3       -> The house
+  rooms.mp3       -> Rooms
+  garden.mp3      -> The garden
+  gatherings.mp3  -> Gatherings
+  stay.mp3        -> Stay
+
+Optional: ambience.mp3 is used on any page that has no track of its own.
+
+- Only use tracks you have a commercial licence for.
+- Keep each one light: 2-4 minutes, 128 kbps MP3 (about 2-4 MB). Tracks loop.
+- The Sound button appears automatically once a track is here.
