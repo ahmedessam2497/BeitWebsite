@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<meta name="theme-color" content="#393B43">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="page-{{PAGE}}">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">{{SPRITE}}</svg>
+
+<!-- page transition: an arch of light that says “come in” -->
+<div class="curtain" aria-hidden="true"><div class="curtain__arch"></div><span class="curtain__ar">اتفضّل</span></div>
+<div class="cursor" aria-hidden="true"><span>View</span></div>
+
+<header class="nav" id="nav">
+  <button class="nav__menu" id="menuOpen" aria-label="Open menu"><span class="burger"><i></i><i></i></span><b>MENU <em class="ar-inline">القائمة</em></b></button>
+  <a class="nav__logo" href="index.html" aria-label="Beit Hend — home"><svg viewBox="{{VB:logo-beit-hend}}"><use href="#logo-beit-hend"/></svg></a>
+  <a class="btn btn--light nav__book" href="stay.html">Book now <span class="ar-inline">احجز</span></a>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <button class="menu__close" id="menuClose"><span class="x"></span>CLOSE</button>
+  <nav class="menu__links">
+    <a href="index.html"><small>00</small>Home<span class="ar">الرئيسية</span></a>
+    <a href="house.html"><small>01</small>The house<span class="ar">البيت</span></a>
+    <a href="rooms.html"><small>02</small>Rooms<span class="ar">الأوض</span></a>
+    <a href="garden.html"><small>03</small>The garden<span class="ar">الجنينة</span></a>
+    <a href="gatherings.html"><small>04</small>Gatherings<span class="ar">اللمّة</span></a>
+    <a href="stay.html"><small>05</small>Stay<span class="ar">خليك عندنا</span></a>
+  </nav>
+  <aside class="menu__side">
+    <p class="label">A light left on for you</p>
+    <svg class="art" viewBox="{{VB:line-door}}"><use href="#line-door"/></svg>
+    <p class="ar">في بيت هند<br>دايمًا في كرسي زيادة</p>
+  </aside>
+</div>
+
+<main id="top">
+{{BODY}}
+</main>
+
+{{FOOTER}}
+{{EXTRA}}
+<script src="assets/js/main.js"></script>
+</body>
+</html>
