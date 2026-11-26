@@ -225,6 +225,7 @@
 
   /* ---------- Registries ---------- */
   const nav = $('#nav');
+  const pagebar = $('.pagebar');
   const pxEls = $$('[data-speed]').map(el => ({ el, speed: +el.dataset.speed, y: 0 }));
   const pxImgs = $$('.px').map(f => ({ f, im: $('img', f) }));
   const waves = $$('.wave svg');
@@ -278,7 +279,8 @@
     }
     const y = scrollY;
     if (!isLanding) {
-      if (Math.abs(y - lastY) > 4) { nav.classList.toggle('is-hidden', y > lastY && y > vh * 1.2); lastY = y; }
+      if (Math.abs(y - lastY) > 4) { const hide = y > lastY && y > vh * 1.2; nav.classList.toggle('is-hidden', hide); document.body.classList.toggle('nav-up', hide); lastY = y; }
+      if (pagebar) pagebar.classList.toggle('is-stuck', y > 20);
     }
     if (!reduce) {
       if (heroMedia && y < vh * 1.2) heroMedia.style.transform = `translate3d(0,${y * .38}px,0)`;

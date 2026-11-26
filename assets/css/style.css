@@ -566,3 +566,20 @@ body:not(.page-index) .nav .nav__book:hover{background:var(--charcoal);color:var
 .pagebar + section:not(.acts){padding-top:calc(var(--wave-h) + clamp(28px,3.5vw,56px))}
 .pagebar + .garden .garden__intro{padding-top:0}
 .pagebar + .rooms .rooms__head{margin-top:0}
+
+/* v3.2 — faint brand artwork on the light backgrounds */
+.has-deco{position:relative;overflow-x:clip}
+.has-deco > *:not(.deco):not(.wave){position:relative;z-index:1}
+.deco{position:absolute;color:var(--rust);opacity:.09;pointer-events:none;z-index:0;height:auto}
+.visit.has-deco,.moments.has-deco{overflow:clip}
+@media (max-width:700px){.deco{opacity:.07}}
+
+/* v3.3 — slightly stronger artwork; page bar stays pinned while scrolling */
+.deco{opacity:.13}
+body:not(.page-index) main{padding-top:76px}
+.pagebar{position:sticky;top:76px;z-index:45;padding-top:18px;padding-bottom:16px;transition:top .7s var(--ease),padding .5s var(--ease),box-shadow .5s}
+body.nav-up .pagebar{top:0}
+.pagebar.is-stuck{padding-top:12px;padding-bottom:12px;box-shadow:0 1px 0 rgba(57,59,67,.1)}
+@media (max-width:700px){.pagebar{padding-top:10px}}
+.rooms__stage{top:150px;height:calc(100svh - 180px)}
+.th__text.t1{top:clamp(130px,17vh,170px)}
