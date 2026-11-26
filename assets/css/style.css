@@ -588,3 +588,15 @@ body.nav-up .pagebar{top:0}
 .deco{opacity:.2}
 .page-house .hend .deco,.visit .deco{opacity:.22}
 @media (max-width:700px){.deco{opacity:.16}}
+
+/* v3.5 — Rooms opens straight on the rooms */
+.pagebar + section.rooms:not(.acts){padding-top:clamp(18px,2vw,30px)}
+.pagebar + .rooms > .wave--top{display:none}
+.rooms__head--compact{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:clamp(20px,2.4vw,34px);
+  padding-bottom:clamp(16px,1.8vw,24px);border-bottom:1px solid rgba(57,59,67,.18)}
+.rooms__head--compact .label{display:block;margin-bottom:.7rem}
+.rooms__head--compact .title{font-size:clamp(1.9rem,3vw,3rem)}
+.rooms__head--compact .ar-sub{margin:0;font-size:clamp(1.3rem,1.9vw,1.8rem)}
+.rooms__stage{top:140px;height:calc(100svh - 170px)}
+.rooms__list{border-top:0}
+.rooms__list .room-row:first-child{padding-top:0}
