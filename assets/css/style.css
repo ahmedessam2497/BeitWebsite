@@ -583,3 +583,8 @@ body.nav-up .pagebar{top:0}
 @media (max-width:700px){.pagebar{padding-top:10px}}
 .rooms__stage{top:150px;height:calc(100svh - 180px)}
 .th__text.t1{top:clamp(130px,17vh,170px)}
+
+/* v3.4 — artwork more present */
+.deco{opacity:.2}
+.page-house .hend .deco,.visit .deco{opacity:.22}
+@media (max-width:700px){.deco{opacity:.16}}
