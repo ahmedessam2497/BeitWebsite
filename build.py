@@ -1,6 +1,9 @@
 """Builds the Beit Hend site: python build.py
 Edit pages in src/pages/*.html and shared parts below; this writes the .html files in this folder."""
 import re, glob, os
+
+# Your live address, e.g. 'https://beithend.com' (used for link previews on WhatsApp/social). Leave '' until known.
+SITE_URL = ''
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # key, English, Arabic, file, hero image, subtitle
@@ -32,14 +35,12 @@ def words(current, landing=False):
     return f'<nav class="hero__words{"" if landing else " hero__words--sm"}" id="heroWords">' + ''.join(out) + '</nav>'
 
 def phero(key):
-    k, en, ar, href, img, sub, pos = next(p for p in PAGES if p[0] == key)
-    return f'''<section class="hero hero--page" id="hero">
-  <div class="hero__media" id="heroMedia"><div class="hero__slide is-active" style="background-image:url(assets/img/{img});background-position:{pos}"></div></div>
-  <div class="hero__shade"></div>
-  <div class="hero__lamp" id="heroLamp" aria-hidden="true"></div>
-  <div class="phero__title"><span class="ar">{ar}</span><h1 class="title">{en}</h1><p class="label">{sub}</p></div>
-  {words(key)}
-</section>'''
+    """Slim page bar: the page starts with its content, with quick bilingual links to the other pages."""
+    items = []
+    for i, (k, en, ar, href, *_ ) in enumerate(PAGES):
+        cur = ' aria-current="page" class="is-active"' if k == key else ''
+        items.append(f'<a href="{href}"{cur}><span class="en">{en}</span><span class="ar">{ar}</span></a>')
+    return '<nav class="pagebar" aria-label="Pages">' + '<i class="pagebar__dot"></i>'.join(items) + '</nav>'
 
 def nxt(key):
     k, en, ar, href, img, sub, pos = next(p for p in PAGES if p[0] == key)
@@ -113,7 +114,7 @@ for key, out in files.items():
     html = html.replace('{{FOOTER}}', '' if key == 'index' else FOOTER)
     html = html.replace('{{EXTRA}}', DRAWER if key == 'rooms' else '')
     html = html.replace('{{TITLE}}', META[key][0]).replace('{{DESC}}', META[key][1]).replace('{{PAGE}}', key)
-    html = html.replace('{{WAVE}}', WAVE)
+    html = html.replace('{{WAVE}}', WAVE).replace('{{OG_IMAGE}}', (SITE_URL.rstrip('/') + '/' if SITE_URL else '') + 'og-image.jpg')
     need = sorted(set(re.findall(r'#((?:logo|art|line)-[\w-]+)', html)))
     sprite = ''.join(f'<symbol id="{n}" viewBox="{SYMS[n][0]}" fill="currentColor">{SYMS[n][1]}</symbol>' for n in need)
     html = html.replace('{{SPRITE}}', sprite)

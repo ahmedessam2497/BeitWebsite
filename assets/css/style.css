@@ -415,7 +415,7 @@ section{position:relative}
 .ar-inline{display:inline-block;margin-inline-start:.5em;font-size:1.35em;line-height:1;vertical-align:-.05em;opacity:.9}
 .label .ar-inline{font-size:1.6em}
 .ar-title{font-size:clamp(1.8rem,3.4vw,3rem);line-height:1.4;color:var(--rust);margin-bottom:.6rem}
-.ar-sub{font-size:clamp(1.3rem,2vw,1.8rem);line-height:1.5;color:var(--rust);margin:-.6rem 0 1.6rem;text-align:start;direction:rtl;width:fit-content}
+.ar-sub{font-size:clamp(1.3rem,2vw,1.8rem);line-height:1.5;color:var(--rust);margin:.4rem 0 1.6rem;text-align:start;direction:rtl;width:fit-content}
 .intro .ar-title{text-align:center}
 
 /* nav */
@@ -537,3 +537,25 @@ body.is-leaving .curtain__ar{animation:fadeIn .4s .35s both}
   .menu__links a .ar{display:none}
 }
 @media (prefers-reduced-motion:reduce){.curtain{display:none}}
+
+/* =========================================================
+   v3 — inner pages open straight on their content
+   ========================================================= */
+body:not(.page-index) .nav{color:var(--charcoal);--nav-h:76px}
+body:not(.page-index) .nav::before{opacity:1}
+body:not(.page-index) .nav .nav__logo svg{height:40px}
+body:not(.page-index) .nav .nav__book:hover{background:var(--charcoal);color:var(--sun);border-color:var(--charcoal)}
+.pagebar{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.4em 1.4em;background:var(--cream);
+  padding:calc(76px + 18px) var(--pad) calc(var(--wave-h) + 14px);position:relative;z-index:1}
+.pagebar a{display:inline-flex;align-items:baseline;gap:.45em;font-family:var(--f-title);font-weight:300;text-transform:uppercase;
+  font-size:clamp(.95rem,1.4vw,1.25rem);letter-spacing:.06em;color:var(--charcoal);opacity:.45;transition:opacity .4s;position:relative;padding:.3em 0}
+.pagebar a .ar{font-size:1.05em;color:var(--rust);display:inline}
+.pagebar a:hover{opacity:.85}
+.pagebar a.is-active{opacity:1}
+.pagebar a.is-active::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--rust)}
+.pagebar__dot{width:4px;height:4px;border-radius:50%;background:var(--charcoal);opacity:.35}
+@media (max-width:700px){
+  .pagebar{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;gap:1.1em;padding-top:calc(76px + 10px)}
+  .pagebar::-webkit-scrollbar{display:none}
+  .pagebar a{flex:none}
+}

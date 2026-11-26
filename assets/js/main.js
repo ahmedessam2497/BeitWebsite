@@ -278,7 +278,6 @@
     }
     const y = scrollY;
     if (!isLanding) {
-      nav.classList.toggle('is-solid', y > vh * .75);
       if (Math.abs(y - lastY) > 4) { nav.classList.toggle('is-hidden', y > lastY && y > vh * 1.2); lastY = y; }
     }
     if (!reduce) {
@@ -374,6 +373,9 @@
       location.href = url;
     });
   }
+
+  const pbActive = $('.pagebar a.is-active');
+  if (pbActive) pbActive.scrollIntoView({ block: 'nearest', inline: 'center' });
 
   /* ---------- Init ---------- */
   function resize() { vh = innerHeight; vw = root.clientWidth; sizeActs(); }
