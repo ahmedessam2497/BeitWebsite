@@ -1,0 +1,5 @@
+Put your background music here, named exactly:  ambience.mp3
+
+- Use a track you have the rights to (licensed or royalty-free for commercial use).
+- Keep it light: about 2-4 minutes, 128 kbps MP3 (roughly 2-4 MB). It loops.
+- The Sound button appears on every page automatically once the file is here.

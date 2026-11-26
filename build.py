@@ -115,6 +115,7 @@ for key, out in files.items():
     html = html.replace('{{EXTRA}}', DRAWER if key == 'rooms' else '')
     html = html.replace('{{TITLE}}', META[key][0]).replace('{{DESC}}', META[key][1]).replace('{{PAGE}}', key)
     html = html.replace('{{WAVE}}', WAVE).replace('{{OG_IMAGE}}', (SITE_URL.rstrip('/') + '/' if SITE_URL else '') + 'og-image.jpg')
+    html = re.sub(r'class="deco"([^>]*><use href="#line-tray")', r'class="deco deco--spin"\1', html)
     need = sorted(set(re.findall(r'#((?:logo|art|line)-[\w-]+)', html)))
     sprite = ''.join(f'<symbol id="{n}" viewBox="{SYMS[n][0]}" fill="currentColor">{SYMS[n][1]}</symbol>' for n in need)
     html = html.replace('{{SPRITE}}', sprite)

@@ -29,6 +29,13 @@
 <div class="curtain" aria-hidden="true"><div class="curtain__arch"></div><span class="curtain__ar">اتفضّل</span></div>
 <div class="cursor" aria-hidden="true"><span>View</span></div>
 
+<!-- background music: drop your track at assets/audio/ambience.mp3 — the button appears automatically -->
+<button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Play background music" hidden>
+  <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="sound__label"><span class="en">Sound</span> <span class="ar-inline">موسيقى</span></span>
+</button>
+<audio id="bgm" src="assets/audio/ambience.mp3" loop preload="metadata"></audio>
+
 <header class="nav" id="nav">
   <button class="nav__menu" id="menuOpen" aria-label="Open menu"><span class="burger"><i></i><i></i></span><b>MENU <em class="ar-inline">القائمة</em></b></button>
   <a class="nav__logo" href="index.html" aria-label="Beit Hend — home"><svg viewBox="0 0 2933 1711"><use href="#logo-beit-hend"/></svg></a>
@@ -82,7 +89,7 @@
 </section>
 
 <section class="house has-deco" id="house">
-  <svg class="deco" data-speed="-0.1" style="right:-7%;top:6%;width:clamp(260px,30vw,480px);transform:rotate(-12deg)" viewBox="0 0 2484 1942" aria-hidden="true"><use href="#line-tray"/></svg>
+  <svg class="deco deco--spin" data-speed="-0.1" style="right:-7%;top:6%;width:clamp(260px,30vw,480px);transform:rotate(-12deg)" viewBox="0 0 2484 1942" aria-hidden="true"><use href="#line-tray"/></svg>
   <svg class="deco" data-speed="0.08" style="left:-6%;bottom:4%;width:clamp(240px,26vw,420px);transform:rotate(8deg)" viewBox="0 0 2922 1415" aria-hidden="true"><use href="#line-tawla"/></svg>
   <div class="wave wave--top" style="color:var(--cream)"><svg viewBox="0 0 2880 140" preserveAspectRatio="none" aria-hidden="true"><path class="w2" fill="currentColor" d="M0 60C180 60 270 12 480 12S780 82 960 82S1260 60 1440 60C1620 60 1710 12 1920 12S2220 82 2400 82S2700 60 2880 60L2880 140L0 140Z"/></svg><svg viewBox="0 0 2880 140" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 96C180 96 270 48 480 48S780 118 960 118S1260 96 1440 96C1620 96 1710 48 1920 48S2220 118 2400 118S2700 96 2880 96L2880 140L0 140Z"/></svg></div>
   <div class="house__grid">

@@ -29,6 +29,13 @@
 <div class="curtain" aria-hidden="true"><div class="curtain__arch"></div><span class="curtain__ar">اتفضّل</span></div>
 <div class="cursor" aria-hidden="true"><span>View</span></div>
 
+<!-- background music: drop your track at assets/audio/ambience.mp3 — the button appears automatically -->
+<button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Play background music" hidden>
+  <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="sound__label"><span class="en">Sound</span> <span class="ar-inline">موسيقى</span></span>
+</button>
+<audio id="bgm" src="assets/audio/ambience.mp3" loop preload="metadata"></audio>
+
 <header class="nav" id="nav">
   <button class="nav__menu" id="menuOpen" aria-label="Open menu"><span class="burger"><i></i><i></i></span><b>MENU <em class="ar-inline">القائمة</em></b></button>
   <a class="nav__logo" href="index.html" aria-label="Beit Hend — home"><svg viewBox="0 0 2933 1711"><use href="#logo-beit-hend"/></svg></a>
@@ -79,7 +86,7 @@
 </section>
 
 <section class="visit has-deco">
-  <svg class="deco" data-speed="-0.08" style="right:-8%;top:-20%;width:clamp(280px,28vw,460px);transform:rotate(-10deg)" viewBox="0 0 2484 1942" aria-hidden="true"><use href="#line-tray"/></svg>
+  <svg class="deco deco--spin" data-speed="-0.08" style="right:-8%;top:-20%;width:clamp(280px,28vw,460px);transform:rotate(-10deg)" viewBox="0 0 2484 1942" aria-hidden="true"><use href="#line-tray"/></svg>
   <svg class="deco" data-speed="0.06" style="left:-2%;bottom:-12%;width:clamp(120px,10vw,170px);transform:rotate(12deg)" viewBox="0 0 1487 2204" aria-hidden="true"><use href="#line-hudhud"/></svg>
   <div class="visit__grid">
     <div class="visit__col rv"><span class="ar">العنوان</span><h3>Find us</h3><p>[Street address]<br>Cairo, Egypt</p><a class="link" href="#" data-ph>Get directions <span class="pill"><svg class="i" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a></div>

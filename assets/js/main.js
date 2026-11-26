@@ -285,6 +285,7 @@
     if (!reduce) {
       if (heroMedia && y < vh * 1.2) heroMedia.style.transform = `translate3d(0,${y * .38}px,0)`;
       pxEls.forEach(p => {
+        if (vw < 700 && !p.el.matches('.deco,.float-art,.day__arts svg')) { if (p.y) { p.y = 0; p.el.style.translate = ''; } return; }
         const r = p.el.getBoundingClientRect(), top = r.top - p.y;
         if (top > vh * 1.5 || top + r.height < -vh * .5) return;
         p.y = (top + r.height / 2 - vh / 2) * p.speed;
@@ -378,6 +379,36 @@
 
   const pbActive = $('.pagebar a.is-active');
   if (pbActive) pbActive.scrollIntoView({ block: 'nearest', inline: 'center' });
+
+  /* ---------- Background music (off until the guest turns it on; remembered across pages) ---------- */
+  const bgm = $('#bgm'), soundBtn = $('#sound');
+  if (bgm && soundBtn) {
+    const VOL = .35;
+    const store = { get(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } },
+                    set(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} } };
+    let fadeT;
+    const fade = (to, ms, done) => {
+      clearInterval(fadeT); const from = bgm.volume, steps = 24; let i = 0;
+      fadeT = setInterval(() => { i++; bgm.volume = Math.max(0, Math.min(1, from + (to - from) * i / steps)); if (i >= steps) { clearInterval(fadeT); done && done(); } }, ms / steps);
+    };
+    const setUI = on => { soundBtn.classList.toggle('is-on', on); soundBtn.setAttribute('aria-pressed', on); soundBtn.setAttribute('aria-label', on ? 'Pause background music' : 'Play background music'); };
+    const play = () => { bgm.volume = 0; const pr = bgm.play(); if (pr) pr.then(() => { setUI(true); fade(VOL, 1600); }).catch(() => setUI(false)); };
+    const stop = () => { fade(0, 700, () => bgm.pause()); setUI(false); };
+    const ready = () => {
+      if (!soundBtn.hidden) return;
+      soundBtn.hidden = false;
+      const t = parseFloat(store.get('bh-music-t')); if (t && t < bgm.duration) bgm.currentTime = t;
+      if (store.get('bh-music') === 'on') {
+        play(); // browsers may block this until the first tap; then we start on that tap
+        const kick = () => { if (bgm.paused && store.get('bh-music') === 'on') play(); ['pointerdown', 'keydown', 'touchstart'].forEach(ev => removeEventListener(ev, kick, true)); };
+        ['pointerdown', 'keydown', 'touchstart'].forEach(ev => addEventListener(ev, kick, { capture: true, once: true }));
+      }
+    };
+    if (bgm.readyState >= 1) ready(); else bgm.addEventListener('loadedmetadata', ready);
+    soundBtn.addEventListener('click', () => { if (bgm.paused) { store.set('bh-music', 'on'); play(); } else { store.set('bh-music', 'off'); stop(); } });
+    addEventListener('pagehide', () => store.set('bh-music-t', String(bgm.currentTime || 0)));
+    document.addEventListener('visibilitychange', () => { if (document.hidden) { if (!bgm.paused) { bgm.pause(); bgm._wasOn = true; } } else if (bgm._wasOn) { bgm._wasOn = false; play(); } });
+  }
 
   /* ---------- Init ---------- */
   function resize() { vh = innerHeight; vw = root.clientWidth; sizeActs(); }

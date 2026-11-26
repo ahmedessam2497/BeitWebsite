@@ -29,6 +29,13 @@
 <div class="curtain" aria-hidden="true"><div class="curtain__arch"></div><span class="curtain__ar">اتفضّل</span></div>
 <div class="cursor" aria-hidden="true"><span>View</span></div>
 
+<!-- background music: drop your track at assets/audio/ambience.mp3 — the button appears automatically -->
+<button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Play background music" hidden>
+  <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="sound__label"><span class="en">Sound</span> <span class="ar-inline">موسيقى</span></span>
+</button>
+<audio id="bgm" src="assets/audio/ambience.mp3" loop preload="metadata"></audio>
+
 <header class="nav" id="nav">
   <button class="nav__menu" id="menuOpen" aria-label="Open menu"><span class="burger"><i></i><i></i></span><b>MENU <em class="ar-inline">القائمة</em></b></button>
   <a class="nav__logo" href="index.html" aria-label="Beit Hend — home"><svg viewBox="0 0 2933 1711"><use href="#logo-beit-hend"/></svg></a>
@@ -56,7 +63,7 @@
 <nav class="pagebar" aria-label="Pages"><a href="house.html"><span class="en">The house</span><span class="ar">البيت</span></a><i class="pagebar__dot"></i><a href="rooms.html" aria-current="page" class="is-active"><span class="en">Rooms</span><span class="ar">الأوض</span></a><i class="pagebar__dot"></i><a href="garden.html"><span class="en">The garden</span><span class="ar">الجنينة</span></a><i class="pagebar__dot"></i><a href="gatherings.html"><span class="en">Gatherings</span><span class="ar">اللمّة</span></a><i class="pagebar__dot"></i><a href="stay.html"><span class="en">Stay</span><span class="ar">خليك عندنا</span></a></nav>
 
 <section class="rooms has-deco" id="rooms">
-  <svg class="deco" data-speed="-0.08" style="right:-6%;top:30%;width:clamp(300px,28vw,460px);transform:rotate(-16deg)" viewBox="0 0 2484 1942" aria-hidden="true"><use href="#line-tray"/></svg>
+  <svg class="deco deco--spin" data-speed="-0.08" style="right:-6%;top:30%;width:clamp(300px,28vw,460px);transform:rotate(-16deg)" viewBox="0 0 2484 1942" aria-hidden="true"><use href="#line-tray"/></svg>
   <svg class="deco" data-speed="0.07" style="left:-2%;bottom:14%;width:clamp(130px,11vw,190px);transform:scaleX(-1) rotate(-8deg)" viewBox="0 0 1487 2204" aria-hidden="true"><use href="#line-hudhud"/></svg>
   <svg class="deco" data-speed="-0.1" style="right:3%;top:5%;width:clamp(120px,11vw,190px)" viewBox="0 0 1487 2204" aria-hidden="true"><use href="#line-hudhud"/></svg>
   <svg class="deco" data-speed="-0.06" style="right:-4%;bottom:3%;width:clamp(150px,13vw,230px);transform:rotate(-8deg)" viewBox="0 0 1242 2597" aria-hidden="true"><use href="#line-door"/></svg>

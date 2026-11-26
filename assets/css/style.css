@@ -600,3 +600,80 @@ body.nav-up .pagebar{top:0}
 .rooms__stage{top:140px;height:calc(100svh - 170px)}
 .rooms__list{border-top:0}
 .rooms__list .room-row:first-child{padding-top:0}
+
+/* =========================================================
+   v4 — living shapes + mobile polish
+   ========================================================= */
+/* shapes breathe and sway; the trays turn slowly like a plate (independent of scroll parallax) */
+@keyframes decoSway{0%,100%{rotate:-4deg;scale:1}50%{rotate:4deg;scale:1.06}}
+@keyframes decoSpin{to{rotate:360deg}}
+.deco{animation:decoSway 16s ease-in-out infinite;transform-origin:50% 50%}
+.deco:nth-of-type(2n){animation-duration:21s;animation-delay:-6s}
+.deco:nth-of-type(3n){animation-duration:13s;animation-delay:-3s}
+.deco--spin{animation:decoSpin 90s linear infinite}
+.deco--spin:nth-of-type(2n){animation-direction:reverse;animation-duration:120s}
+.float-art,.day__arts svg{animation:decoSway 12s ease-in-out infinite}
+.day__arts svg:nth-child(2){animation-delay:-4s}.day__arts svg:nth-child(3){animation-delay:-8s}
+.act__art svg{animation:decoSway 14s ease-in-out infinite;transform-origin:50% 80%}
+.act:nth-child(odd) .act__art svg{animation-delay:-5s}
+
+@media (max-width:700px){
+  /* page bar: all five pages visible as tabs, no sideways scrolling */
+  .pagebar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;overflow:visible;padding:8px 6px 8px}
+  .pagebar__dot{display:none}
+  .pagebar a{flex-direction:column;align-items:center;gap:2px;text-align:center;font-size:.62rem;letter-spacing:.04em;line-height:1.15;padding:6px 2px;min-height:46px;justify-content:center}
+  .pagebar a .ar{font-size:1rem;line-height:1.1}
+  .pagebar a.is-active::after{left:18%;right:18%}
+
+  /* house collage: a calm stack instead of scattered slivers */
+  .house__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .house__text{grid-column:1/-1;margin-bottom:24px}
+  .house__img.i1{grid-column:1/-1;margin:0;aspect-ratio:4/5}
+  .house__img.i2{display:none}
+  .house__img.i3,.house__img.i4{grid-column:auto;margin:0;aspect-ratio:3/4;border-radius:200px 200px 8px 8px}
+  .house__quote{grid-column:1/-1;margin-top:28px}
+
+  /* acts: one card per screen width, nothing overlaps */
+  .act{width:78vw}
+  .act--intro{width:86vw}
+  .act p{max-width:none}
+  .act h3{font-size:2rem}
+  .act__art{height:30vh}
+  .acts__track{gap:9vw}
+
+  /* comfortable reading + tap targets */
+  .lead{font-size:1rem}
+  .room-row h3{font-size:2.2rem}
+  .slider__nav button{width:52px;height:36px}
+  .hend{gap:56px}
+  .hend__story{font-size:1.3rem}
+  .menu__links a .ar{display:inline;font-size:.5em}
+  .menu__links a{font-size:2.4rem}
+  .next{height:62vh}
+  .foot__top{gap:32px 20px}
+  .foot__big{font-size:2.6rem}
+  .book__form .btn{width:100%;justify-content:center}
+  .field input,.field select{font-size:1.3rem;min-height:40px}
+  .visit__col{padding-top:1.2rem}
+}
+
+/* v4.1 — background music toggle */
+.sound{position:fixed;left:var(--pad);bottom:26px;z-index:55;display:flex;align-items:center;gap:12px;padding:10px 16px 10px 14px;border-radius:99px;
+  background:rgba(251,244,238,.88);color:var(--charcoal);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 6px 24px rgba(30,31,36,.12);
+  font-family:var(--f-sub);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;transition:transform .5s var(--ease),background .4s,color .4s;min-height:44px}
+.sound[hidden]{display:none}
+.sound:hover{transform:translateY(-2px)}
+.sound .ar-inline{font-size:1.5em;letter-spacing:0}
+.sound__bars{display:flex;align-items:flex-end;gap:3px;height:14px}
+.sound__bars i{width:2px;height:4px;background:currentColor;border-radius:2px;transition:height .3s}
+.sound.is-on{background:var(--charcoal);color:var(--sun)}
+.sound.is-on .sound__bars i{animation:eq 1.1s ease-in-out infinite}
+.sound.is-on .sound__bars i:nth-child(2){animation-delay:-.4s}.sound.is-on .sound__bars i:nth-child(3){animation-delay:-.8s}.sound.is-on .sound__bars i:nth-child(4){animation-delay:-.2s}
+@keyframes eq{0%,100%{height:4px}50%{height:14px}}
+body.page-index .sound{bottom:auto;top:calc(96px + 8px);left:var(--pad);background:rgba(251,244,238,.16);color:var(--cream)}
+body.page-index .sound.is-on{background:var(--sun);color:var(--charcoal)}
+@media (max-width:700px){
+  .sound{left:14px;bottom:14px;padding:8px 12px;gap:8px}
+  .sound__label .en{display:none}
+  body.page-index .sound{top:86px;left:14px}
+}
